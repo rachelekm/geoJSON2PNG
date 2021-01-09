@@ -3,7 +3,7 @@
 const startPage = {
     initMap: function(){
         var map = L.map('mapBox').setView([33.69813, -115.27992], 6);
-        map.on('idle', onMapLoad);
+        startPage.map = map;
         L.tileLayer('https://api.maptiler.com/maps/4dbd4b04-f294-474e-9cc3-418695593a17/{z}/{x}/{y}.png?key=Ig5arvzPKF3OZAwa7PiN',{
           tileSize: 512,
           zoomOffset: -1,
@@ -25,14 +25,6 @@ const startPage = {
         }
       
         L.geoJson(geojsonFeature, {style: style}).addTo(map);
-
-        function onMapLoad(){
-          L.easyPrint({
-            title: 'My awesome print button',
-            position: 'bottomright',
-            sizeModes: ['A4Portrait', 'A4Landscape']
-          }).addTo(map);
-        }
 
        /* //add state labels
         let polyStyle = {
@@ -75,6 +67,16 @@ const startPage = {
           return 0;
         }
       }
+    },
+    manualPrint: function(){
+      var printer = L.easyPrint({
+        sizeModes: ['Current', 'A4Landscape', 'A4Portrait'],
+        filename: 'myMap',
+        exportOnly: true,
+        hideControlContainer: true
+      }).addTo(startPage.map);
+
+      printer.printMap('CurrentSize', 'MyManualPrint');
     }
 }
 

@@ -5,12 +5,24 @@
 html, body{
     height: 100%;
     width: 100%;
+    overflow: scroll;
 }
 
 #mapBox{
     position: absolute;
+    width: 3000px;
+    height: 2000px;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: 1;
+}
+
+.manualButton {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    display: block;
 }
