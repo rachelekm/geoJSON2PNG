@@ -1,5 +1,10 @@
 'use strict';
 
+const dim = {
+  width: 2400,
+  height: 1800
+}
+
 const startPage = {
     initMap: function(){
         var map = L.map('mapBox').setView([33.69813, -115.27992], 6);
@@ -17,7 +22,7 @@ const startPage = {
         function style(feature) {
           return {
               color: '#000000',
-              weight: 3,
+              weight: 10,
               opacity: 1, 
               fillOpacity: 1,
               fillColor: startPage.getColor(feature.properties.STATE, feature.properties.CD)

@@ -5,24 +5,75 @@
 html, body{
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 #mapBox{
     position: absolute;
-    width: 3000px;
-    height: 2000px;
+    width: 100%;
+    height: calc(100% - 100px);
     top: 0;
     left: 0;
-    bottom: 0;
+    bottom: -100px;
     right: 0;
     z-index: 1;
 }
 
-.manualButton {
+.mapControls{
     position: fixed;
-    z-index: 5;
-    top: 0;
     left: 0;
-    display: block;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    background-color: light grey;
+}
+
+.grid-3{
+    position: relative;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 33.3%;
+}
+
+.centerItems{
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centerItems > input, .centerItems > label {
+    width: calc(100% - 30px);
+    display: inline-block;
+}
+
+#manualButton{
+    height: 50px;
+}
+
+.dim{
+    width: 20px;
+    padding: 5px;
+    display: inline-block;
+}
+
+@media (max-height: 415px){
+    #mapBox{
+        width: calc(100% - 100px);
+        height: 100%;
+        left: 100px;
+        bottom: 0;
+    }
+    
+    .mapControls{
+        height: 100%;
+        width: 100px;
+    }
+
+    .grid-3{
+        height: 33.3%;
+        width: 100%;
+    }
 }
