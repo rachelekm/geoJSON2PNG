@@ -12,6 +12,10 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+app.get('/style', (req, res) => {
+  res.json({url: process.env.MAPTILER_URL});
+});
+
 let server;
 
 function runServer() {

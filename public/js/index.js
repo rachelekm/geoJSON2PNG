@@ -1,8 +1,14 @@
 'use strict';
 
-const startPage = {
+const clientView = {
     initPage: function(){
-      this.initMap();
+      $.ajax({
+        type: 'get',
+        url: '/style',
+        success: function (data) {
+          clientView.initMap(data);
+        }
+      });
 
       $('input[type=number]').on('input', e => {
         e.preventDefault();
@@ -18,18 +24,18 @@ const startPage = {
       });
       $('#mapControls').submit(e => {
         e.preventDefault();
-        startPage.manualPrint();
+        clientView.manualPrint();
       });
 
       function inToPixels(inches){
         return inches*300;
       }
     },
-    initMap: function(){
+    initMap: function(json){
         var map = L.map('mapBox').setView([37.8, -96], 4);
         //create API to send maptiler url
-        startPage.map = map;
-        L.tileLayer('https://api.maptiler.com/maps/4dbd4b04-f294-474e-9cc3-418695593a17/{z}/{x}/{y}.png?key=Ig5arvzPKF3OZAwa7PiN',{
+        clientView.map = map;
+        L.tileLayer(json.url,{
           tileSize: 512,
           zoomOffset: -1,
           minZoom: 1,
@@ -45,7 +51,7 @@ const startPage = {
               weight: 10,
               opacity: 1, 
               fillOpacity: 1,
-              fillColor: startPage.getColor(feature.properties.STATE, feature.properties.CD)
+              fillColor: clientView.getColor(feature.properties.STATE, feature.properties.CD)
           };
         }
       
@@ -80,10 +86,10 @@ const startPage = {
         exportOnly: true,
         hidden: true,
         hideControlContainer: true
-      }).addTo(startPage.map);
+      }).addTo(clientView.map);
 
       printer.printMap('CurrentSize', 'MyManualPrint');
     }
 }
 
-$(startPage.initPage());
+$(clientView.initPage());
