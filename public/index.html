@@ -1,12 +1,9 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
+  <title>Congressional Districts of the 139 members of Congress who Voted to Overturn the Election</title>
+  <meta name="description" content="Pattern PNG Generator of Congressional Districts of the 139 members of Congress who Voted to Overturn the Election">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
@@ -17,24 +14,26 @@
   <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
 </head>
 <body>
-    <form class="mapControls">
+    <form id="mapControls">
       <div class="grid-3">
           <span class="centerItems">
             <label for="width">Map Width:</label><br>
-            <input type="number" id="width" name="width" required><span class="dim">in.</span>
+            <input type="number" id="width" name="width" value="8" required><span class="dim">in.</span>
         </span>
       </div>
       <div class="grid-3">
           <span class="centerItems">
             <label for="height">Map Height:</label><br>
-            <input type="number" id="height" name="height" required><span class="dim">in.</span>
+            <input type="number" id="height" name="height" value="6" required><span class="dim">in.</span>
         </span>
       </div>
       <div class="grid-3">
-          <input type="submit" id="manualButton" class="centerItems" value="PRINT" onclick='startPage.manualPrint()'>
+          <input type="submit" id="manualButton" class="centerItems" value="PRINT">
       </div>
     </form>
-    <div id='mapBox'>
+    <div class='defaultDim'>
+      <div id='mapBox'></div>
+    </div>
     </div>
     <script src="./js/dist/bundle.js"></script>
     <script src="./js/houseReps.js"></script>

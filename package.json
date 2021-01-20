@@ -10,10 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "geojson-to-image": "0.0.0",
-    "leaflet-easyprint": "^2.1.9",
-    "leaflet-image": "^0.4.0",
-    "leaflet.browser.print": "^1.0.6",
-    "ogr2ogr": "^2.1.0"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   }
 }

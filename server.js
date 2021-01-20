@@ -1,11 +1,47 @@
 'use strict';
-var ogr2ogr = require('ogr2ogr');
-var ogr = ogr2ogr('./US_Congressional_District.geojson')
- 
-ogr.exec(function (er, data) {
-  if (er) console.error(er)
-  console.log(data)
-})
- 
-var ogr2 = ogr2ogr('/path/to/another/spatial/file')
-ogr2.stream().pipe(writeStream)
+
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+
+const app = express();
+app.use(morgan('common'));
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+let server;
+
+function runServer() {
+  const port = process.env.PORT || 8080;
+  return new Promise((resolve, reject) => {
+    server = app.listen(port, () => {
+      console.log(`Your app is listening on port ${port}`);
+      resolve(server);
+    })
+    .on('error', err => {
+      reject(err);
+    });
+  });
+}
+
+function closeServer() {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve();
+      });
+    });
+}
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+};
+
+module.exports = { app, runServer, closeServer }
